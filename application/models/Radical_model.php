@@ -18,7 +18,7 @@ class Radical_model extends CI_Model
             $data['radical_shape']=$radical_info['radical_shape'];
             $data['radical_name']=$radical_info['radical_name'];
             $data['characters']=$radical_info['characters'];
-            return $this->db->insert('radical_learning',$data);
+            return $this->db->insert('hzw_radical',$data);
         }
         else
             return false;
@@ -28,6 +28,6 @@ class Radical_model extends CI_Model
         if($radical_shape==-1)
             return null;
         else
-            return $this->db->get_where('radical_learning',array('radical_shape'=>$radical_shape))->row_array();
+            return $this->db->get_where('hzw_radical',array('radical_shape'=>$radical_shape))->row_array();
     }
 }

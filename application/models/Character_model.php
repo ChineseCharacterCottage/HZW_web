@@ -22,7 +22,7 @@ class Character_model extends CI_Model
             $data['sentence']=$character_info['sentence'];
             $data['explanation']=$character_info['explanation'];
             $data['radical_id']=$character_info['radical_id'];
-            return $this->db->insert('char_item',$data);
+            return $this->db->insert('hzw_character',$data);
         }
         else
             return false;
@@ -32,6 +32,6 @@ class Character_model extends CI_Model
         if($char_shape==-1)
             return null;
         else
-            return $this->db->get_where('char_item',array('character'=>$char_shape))->row_array();
+            return $this->db->get_where('hzw_character',array('character'=>$char_shape))->row_array();
     }
 }
