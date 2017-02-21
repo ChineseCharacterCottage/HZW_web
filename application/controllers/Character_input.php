@@ -17,6 +17,10 @@ class Character_input extends CI_Controller
         $this->load->model('Radical_model');
         $this->load->helper('url');
         $this->load->library('form_validation');
+
+        $config['upload_path'] = FCPATH . '/img/';
+        $config['allowed_types'] = 'mp3|jpg';
+        $this->load->library('upload', $config);
     }
 
     public function index(){
@@ -28,12 +32,20 @@ class Character_input extends CI_Controller
         $this->form_validation->set_rules('radical', 'radical', 'trim|required|callback_radical_check');
 
         $result=false;
-        if($this->form_validation->run()){
-            $data=$this->input->post();
-            $data['radical_id']=$this->radical['ID'];
-            $result=$this->Character_model->insert_new_character($data);
+        $result_msg='';
+        if($this->form_validation->run()&&$this->upload->do_upload('sentence_pronunciation')){
+            if($this->Character_model->get_character_by_pinyin($this->input->post('pinyin'))!=null
+            ||$this->upload->do_upload('sentence_pronunciation')){
+                $data=$this->input->post();
+                $data['radical_id']=$this->radical['ID'];
+                $result=$this->Character_model->insert_new_character($data);
+                $result_msg='上传成功';
+            }else{
+                $result_msg='字库中还没有这个发音的读音文件，请上传';
+            }
+
         }
-        $this->load->view('character_input',array('result'=>$result));
+        $this->load->view('character_input',array('result'=>$result,'result_msg'=>$result_msg));
     }
 
     /*未完成，也许以后会用到

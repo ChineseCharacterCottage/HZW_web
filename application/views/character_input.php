@@ -13,11 +13,17 @@
     <label for="pinyin">pinyin(拼音):</label>
     <input type="text" id="pinyin" name="pinyin" value="<?php if(!$result) echo set_value('pinyin'); ?>"><br/>
 
+    <label for="pronunciation">pronunciation(读音文件):</label>
+    <input type="file" id="pronunciation" name="pronunciation"><br/>
+
     <label for="words">words(例词):</label>
     <input type="text" id="words" name="words" value="<?php if(!$result) echo set_value('words'); ?>"><br/>
 
     <label for="sentence">sentence(例句):</label>
     <input type="text" id="sentence" name="sentence" value="<?php if(!$result) echo set_value('sentence'); ?>"><br/>
+
+    <label for="sentence_pronunciation">sentence pronunciation(例句读音文件):</label>
+    <input type="file" id="sentence_pronunciation" name="sentence_pronunciation"><br/>
 
     <label for="explanation">explanation(解释):</label>
     <input type="text" id="explanation" name="explanation" value="<?php if(!$result) echo set_value('explanation'); ?>"><br/>
@@ -25,8 +31,8 @@
     <label for="radical">radical(部首):</label>
     <input type="text" id="radical" name="radical" value="<?php if(!$result) echo set_value('radical'); ?>"><br/>
 
-    <input type="submit"><br/>
-    <p id="result_message"><?php if($result) echo '录入成功';?></p>
+    <input type="submit" value="添加汉字"><br/>
+    <p id="result_message"><?php  echo $result_msg;?></p>
     <p><a href="<?php echo site_url('radical_input');?>">去录入部首</a></p>
     </form>
 
