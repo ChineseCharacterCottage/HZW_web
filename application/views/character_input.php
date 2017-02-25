@@ -33,7 +33,7 @@
 
     <input type="submit" value="添加汉字"><br/>
     <p id="result_message"><?php  echo $result_msg;?></p>
-    <p><a href="<?php echo site_url('radical_input');?>">去录入部首</a></p>
+    <p><a href="<?php echo site_url('radical_input/index');?>">去录入部首</a></p>
     </form>
 
 </body>
