@@ -17,10 +17,6 @@ class Character_input extends CI_Controller
         $this->load->model('Radical_model');
         $this->load->helper('url');
         $this->load->library('form_validation');
-
-        $config['upload_path'] = FCPATH . '/img/';
-        $config['allowed_types'] = 'mp3|jpg';
-        $this->load->library('upload', $config);
     }
 
     public function index(){
@@ -33,17 +29,23 @@ class Character_input extends CI_Controller
 
         $result=false;
         $result_msg='';
-        if($this->form_validation->run()&&$this->upload->do_upload('sentence_pronunciation')){
-            if($this->Character_model->get_character_by_pinyin($this->input->post('pinyin'))!=null
-            ||$this->upload->do_upload('sentence_pronunciation')){
+        if($this->form_validation->run()&&$_FILES['pronunciation']['type']=='jpg'&&$_FILES['pronunciation']['error']==0){
+            $old_pinyin=$this->Character_model->get_character_by_pinyin($this->input->post('pinyin'));
+            if($old_pinyin!=null||($_FILES['sentence_pronunciation']['type']=='mp3'&&$_FILES['sentence_pronunciation']['error']==0)){
                 $data=$this->input->post();
                 $data['radical_id']=$this->radical['ID'];
-                $result=$this->Character_model->insert_new_character($data);
-                $result_msg='上传成功';
+                if($result=$this->Character_model->insert_new_character($data)){
+                    move_uploaded_file($_FILES['pronunciation']['tmp_name'],FCPATH.'assets'.$this->db->insert_id().'.jpg');
+                    if($old_pinyin==null){
+                        move_uploaded_file($_FILES['sentence_pronunciation']['tmp_name'],FCPATH.'assets'.$this->input->post('pinyin').'mp3');
+                    }
+                    $result_msg='上传成功';
+                }else{
+                    $result_msg='上传失败';
+                }
             }else{
                 $result_msg='字库中还没有这个发音的读音文件，请上传';
             }
-
         }
         $this->load->view('character_input',array('result'=>$result,'result_msg'=>$result_msg));
     }
