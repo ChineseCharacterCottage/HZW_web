@@ -1,27 +1,8 @@
-﻿# Host: localhost  (Version 5.6.17)
-# Date: 2017-02-25 19:26:38
-# Generator: MySQL-Front 5.4  (Build 4.153) - http://www.mysqlfront.de/
+﻿# Host: localhost  (Version: 5.5.47)
+# Date: 2017-02-25 21:02:06
+# Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES utf8 */;
-
-#
-# Structure for table "component_learning"
-#
-
-DROP TABLE IF EXISTS `component_learning`;
-CREATE TABLE `component_learning` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `shape` varchar(255) DEFAULT NULL,
-  `characters` varchar(255) DEFAULT NULL,
-  `voice_or_shape` varchar(255) DEFAULT NULL,
-  `explanation` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-#
-# Data for table "component_learning"
-#
-
 
 #
 # Structure for table "hzw_character"
@@ -90,17 +71,17 @@ INSERT INTO `hzw_relation_similar_radical` VALUES (1,'4','5'),(2,'5','7'),(3,'4'
 DROP TABLE IF EXISTS `hzw_test_fill`;
 CREATE TABLE `hzw_test_fill` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `choice1` text COLLATE utf8_bin NOT NULL,
-  `choice2` text COLLATE utf8_bin NOT NULL,
-  `choice3` text COLLATE utf8_bin NOT NULL,
-  `choice4` text COLLATE utf8_bin NOT NULL,
-  `choice5` text COLLATE utf8_bin NOT NULL,
-  `sentence1` text COLLATE utf8_bin NOT NULL,
-  `sentence2` text COLLATE utf8_bin NOT NULL,
-  `sentence3` text COLLATE utf8_bin NOT NULL,
-  `sentence4` text COLLATE utf8_bin NOT NULL,
-  `sentence5` text COLLATE utf8_bin NOT NULL,
-  `correct_answer` text COLLATE utf8_bin NOT NULL,
+  `choice1` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `choice2` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `choice3` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `choice4` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `choice5` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `sentence1` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `sentence2` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `sentence3` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `sentence4` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `sentence5` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `correct_answer` varchar(5) CHARACTER SET utf8 NOT NULL DEFAULT '12345' COMMENT '正确选项',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -117,18 +98,23 @@ INSERT INTO `hzw_test_fill` VALUES (1,'庄严','家庭','仓库','饭店','矿�
 DROP TABLE IF EXISTS `hzw_test_hear_choice`;
 CREATE TABLE `hzw_test_hear_choice` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `choice_count` int(11) NOT NULL DEFAULT '4',
-  `correct_choice` varchar(1) COLLATE utf8_bin NOT NULL,
-  `sentence` text COLLATE utf8_bin NOT NULL,
-  `relation_character_id` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  `correct_choice` char(1) CHARACTER SET utf8 NOT NULL DEFAULT 'A' COMMENT '正确选项',
+  `pronunciation` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '听力发音',
+  `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字',
+  `picture_a` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '四个选项',
+  `picture_b` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `picture_c` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `picture_d` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  KEY `relation_character_id` (`relation_character_id`),
+  CONSTRAINT `hzw_test_hear_choice_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #
 # Data for table "hzw_test_hear_choice"
 #
 
-INSERT INTO `hzw_test_hear_choice` VALUES (1,4,'D','那是城里最有名的饭店。/That\'s the most famous restaurant in the town.',4);
+INSERT INTO `hzw_test_hear_choice` VALUES (1,'D','那是城里最有名的饭店。/That\'s the most famous restaurant in t',4,'','','','');
 
 #
 # Structure for table "hzw_test_hear_tof"
@@ -136,15 +122,40 @@ INSERT INTO `hzw_test_hear_choice` VALUES (1,4,'D','那是城里最有名的饭�
 
 DROP TABLE IF EXISTS `hzw_test_hear_tof`;
 CREATE TABLE `hzw_test_hear_tof` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `isture` tinyint(1) NOT NULL,
-  `relation_character` int(11) NOT NULL,
-  `sentence` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `isture` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否正确，正确为1',
+  `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字id',
+  `pronunciation` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `picture` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `relation_character_id` (`relation_character_id`),
+  CONSTRAINT `hzw_test_hear_tof_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #
 # Data for table "hzw_test_hear_tof"
 #
 
-INSERT INTO `hzw_test_hear_tof` VALUES (1,0,4,'那是城里最有名的饭店。/That\'s the most famous restaurant in the town.');
+INSERT INTO `hzw_test_hear_tof` VALUES (1,b'0',4,'那是城里最有名的饭店。/That\'s the most famous restaurant in the town.',NULL);
+
+#
+# Structure for table "hzw_test_tof"
+#
+
+DROP TABLE IF EXISTS `hzw_test_tof`;
+CREATE TABLE `hzw_test_tof` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `istrue` bit(1) DEFAULT b'0' COMMENT '是否正确，正确为1',
+  `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字id',
+  `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `character` char(4) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  KEY `relation_character_id` (`relation_character_id`),
+  CONSTRAINT `hzw_test_tof_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "hzw_test_tof"
+#
+
+INSERT INTO `hzw_test_tof` VALUES (1,b'0',7,NULL,'床');
