@@ -92,7 +92,7 @@ class Test_input extends CI_Controller
         $result=false;
         $result_msg='';
         if($this->form_validation->run()){
-            $result=$this->Test_tof_model->insert_new_test($this->input->post());
+            $result=$this->Test_fill_model->insert_new_test($this->input->post());
             if(!$result)
                 $result_msg='上传出现错误，请重试';
             else

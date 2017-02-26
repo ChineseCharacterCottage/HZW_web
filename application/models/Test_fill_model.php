@@ -17,7 +17,7 @@ class Test_fill_model extends CI_Model
         if(isset($test_info['choice1'])&&isset($test_info['choice2'])&&isset($test_info['choice3'])&&isset($test_info['choice4'])
             &&isset($test_info['choice5'])&&isset($test_info['sentence1'])&&isset($test_info['sentence2'])
             &&isset($test_info['sentence3'])&&isset($test_info['sentence4']) &&isset($test_info['sentence5'])
-            &&isset($test_info['correct_answer'])){
+            &&isset($test_info['correct_order'])){
             $data['choice1']=$test_info['choice1'];
             $data['choice2']=$test_info['choice2'];
             $data['choice3']=$test_info['choice3'];
@@ -28,7 +28,7 @@ class Test_fill_model extends CI_Model
             $data['sentence3']=$test_info['sentence3'];
             $data['sentence4']=$test_info['sentence4'];
             $data['sentence5']=$test_info['sentence5'];
-            $data['correct_answer']=$test_info['correct_answer'];
+            $data['correct_order']=$test_info['correct_order'];
             return $this->db->insert('hzw_test_fill',$data);
         }else
             return false;

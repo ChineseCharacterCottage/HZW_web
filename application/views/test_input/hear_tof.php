@@ -17,7 +17,7 @@
     <input type="radio" id="tof_f" name="tof" value="0">false<br/>
 
     <input type="submit" value="确定">
-    <p id="result_message"><?php if($result) echo '录入成功';?></p>
+    <p id="result_message"><?php  echo $result_msg;?></p>
     </form>
     <p><a href="<?php echo site_url('test_input/index');?>">返回主页</a> </p>
 </body>
