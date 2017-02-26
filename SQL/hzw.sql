@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.47)
-# Date: 2017-02-25 21:02:06
+# Date: 2017-02-26 14:28:46
 # Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES utf8 */;
@@ -123,7 +123,7 @@ INSERT INTO `hzw_test_hear_choice` VALUES (1,'D','那是城里最有名的饭店
 DROP TABLE IF EXISTS `hzw_test_hear_tof`;
 CREATE TABLE `hzw_test_hear_tof` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `isture` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否正确，正确为1',
+  `tof` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否正确，正确为1',
   `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字id',
   `pronunciation` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `picture` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -145,9 +145,9 @@ INSERT INTO `hzw_test_hear_tof` VALUES (1,b'0',4,'那是城里最有名的饭店
 DROP TABLE IF EXISTS `hzw_test_tof`;
 CREATE TABLE `hzw_test_tof` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `istrue` bit(1) DEFAULT b'0' COMMENT '是否正确，正确为1',
+  `tof` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否正确，正确为1',
   `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字id',
-  `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `picture` varchar(255) NOT NULL DEFAULT '',
   `character` char(4) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `relation_character_id` (`relation_character_id`),
@@ -158,4 +158,4 @@ CREATE TABLE `hzw_test_tof` (
 # Data for table "hzw_test_tof"
 #
 
-INSERT INTO `hzw_test_tof` VALUES (1,b'0',7,NULL,'床');
+INSERT INTO `hzw_test_tof` VALUES (1,b'0',7,'','床');
