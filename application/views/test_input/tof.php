@@ -6,8 +6,8 @@
     <?php echo validation_errors(); ?>
     <?php echo form_open_multipart('test_input/tof', array('id' => 'tof_form','class'=>'input_form')); ?>
 
-    <label for="character">character(字形):</label>
-    <input type="text" id="character" name="character" value="<?php if(!$result) echo set_value('character'); ?>"><br/>
+    <label for="character_shape">character(字形):</label>
+    <input type="text" id="character_shape" name="character_shape" value="<?php if(!$result) echo set_value('character_shape'); ?>"><br/>
 
     <label for="picture_char">picture character(图片对应字):</label>
     <input type="text" id="picture_char" name="picture_char" value="<?php if(!$result) echo set_value('picture_char'); ?>"><br/><hr/>

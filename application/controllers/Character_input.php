@@ -20,7 +20,7 @@ class Character_input extends CI_Controller
     }
 
     public function index(){
-        $this->form_validation->set_rules('character', 'character', 'trim|required', array('required' => '请输入汉字字形'));
+        $this->form_validation->set_rules('character_shape', 'character_shape', 'trim|required', array('required' => '请输入汉字字形'));
         $this->form_validation->set_rules('pinyin', 'pinyin', 'trim|required', array('required' => '请输入汉字拼音'));
         $this->form_validation->set_rules('words', 'words', 'trim|required', array('required' => '请输入例词'));
         $this->form_validation->set_rules('sentence', 'sentence', 'trim|required', array('required' => '请输入例句'));

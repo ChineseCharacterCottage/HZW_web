@@ -64,7 +64,7 @@ class Test_input extends CI_Controller
     public function tof(){
         $this->load->model('Test_tof_model');
 
-        $this->form_validation->set_rules('character', 'character', 'trim|required', array('required' => '请输入发音字'));
+        $this->form_validation->set_rules('character_shape', 'character_shape', 'trim|required', array('required' => '请输入发音字'));
         $this->form_validation->set_rules('picture_char', 'picture_char', 'trim|required', array('required' => '请输入图片对应字'));
         $this->form_validation->set_rules('tof', 'tof', 'trim|required', array('required' => '请选择是否正确'));
 

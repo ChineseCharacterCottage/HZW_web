@@ -9,14 +9,14 @@
 class Character_model extends CI_Model
 {
     /**
-     * $character_info:character、pinyin、words、sentence、explanation、radical_id
+     * $character_info:character_shape、pinyin、words、sentence、explanation、radical_id
      * @param $character_info
      * @return bool
      */
     public function insert_new_character($character_info){
-        if(isset($character_info['character'])&&isset($character_info['pinyin'])&&isset($character_info['words'])
+        if(isset($character_info['character_shape'])&&isset($character_info['pinyin'])&&isset($character_info['words'])
             &&isset($character_info['sentence'])&&isset($character_info['explanation'])&&isset($character_info['radical_id'])){
-            $data['character']=$character_info['character'];
+            $data['character_shape']=$character_info['character_shape'];
             $data['pinyin']=$character_info['pinyin'];
             $data['words']=$character_info['words'];
             $data['sentence']=$character_info['sentence'];

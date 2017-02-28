@@ -7,8 +7,8 @@
     <?php echo validation_errors(); ?>
     <?php echo form_open_multipart('character_input', array('id' => 'char_input_form','class'=>'input_form')); ?>
 
-    <label for="character">character(字形):</label>
-    <input type="text" id="character" name="character" value="<?php if(!$result) echo set_value('character'); ?>"><br/>
+    <label for="character_shape">character(字形):</label>
+    <input type="text" id="character_shape" name="character_shape" value="<?php if(!$result) echo set_value('character_shape'); ?>"><br/>
 
     <label for="pinyin">pinyin(拼音):</label>
     <input type="text" id="pinyin" name="pinyin" value="<?php if(!$result) echo set_value('pinyin'); ?>"><br/>
