@@ -16,7 +16,7 @@ class Test_tof_model extends CI_Model
     public function insert_new_test($test_info){
         if(isset($test_info['character_shape'])&&isset($test_info['picture_char'])&&isset($test_info['tof'])){
             $this->load->model('Character_model');
-            $relation_char=$this->Character_model->get_character_by_shape($test_info['character']);
+            $relation_char=$this->Character_model->get_character_by_shape($test_info['character_shape']);
             $picture_char=$this->Character_model->get_character_by_shape($test_info['picture_char']);
             if($relation_char!=null&&$picture_char!=null){
                 $data['tof']=$test_info['tof'];
