@@ -29,15 +29,15 @@ class Character_input extends CI_Controller
 
         $result=false;
         $result_msg='';
-        if($this->form_validation->run()&&$_FILES['pronunciation']['type']=='jpg'&&$_FILES['pronunciation']['error']==0){
+        if($this->form_validation->run()&&$_FILES['pronunciation']['type']=='mp3'&&$_FILES['pronunciation']['error']==0){
             $old_pinyin=$this->Character_model->get_character_by_pinyin($this->input->post('pinyin'));
             if($old_pinyin!=null||($_FILES['sentence_pronunciation']['type']=='mp3'&&$_FILES['sentence_pronunciation']['error']==0)){
                 $data=$this->input->post();
                 $data['radical_id']=$this->radical['ID'];
                 if($result=$this->Character_model->insert_new_character($data)){
-                    move_uploaded_file($_FILES['pronunciation']['tmp_name'],FCPATH.'assets'.$this->db->insert_id().'.jpg');
+                    move_uploaded_file($_FILES['pronunciation']['tmp_name'],FCPATH.'assets/s_'.$this->db->insert_id().'.mp3');
                     if($old_pinyin==null){
-                        move_uploaded_file($_FILES['sentence_pronunciation']['tmp_name'],FCPATH.'assets'.$this->input->post('pinyin').'mp3');
+                        move_uploaded_file($_FILES['sentence_pronunciation']['tmp_name'],FCPATH.'assets/'.$this->input->post('pinyin').'mp3');
                     }
                     $result_msg='上传成功';
                 }else{
