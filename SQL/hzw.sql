@@ -1,6 +1,6 @@
-﻿# Host: localhost  (Version: 5.5.47)
-# Date: 2017-03-06 23:35:36
-# Generator: MySQL-Front 5.3  (Build 4.234)
+﻿# Host: localhost  (Version 5.6.17)
+# Date: 2017-04-30 18:13:49
+# Generator: MySQL-Front 5.4  (Build 4.153) - http://www.mysqlfront.de/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -11,7 +11,7 @@
 DROP TABLE IF EXISTS `hzw_character`;
 CREATE TABLE `hzw_character` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `character` varchar(255) DEFAULT NULL,
+  `character_shape` varchar(255) DEFAULT NULL,
   `pinyin` varchar(255) DEFAULT NULL,
   `words` varchar(255) DEFAULT NULL,
   `sentence` varchar(255) DEFAULT NULL,
@@ -85,6 +85,24 @@ CREATE TABLE `hzw_relation_similar_radical` (
 INSERT INTO `hzw_relation_similar_radical` VALUES (1,'4','5'),(2,'5','7'),(3,'4','8'),(4,'7','8'),(5,'7','10'),(6,'14','15'),(7,'11','12'),(8,'11','13'),(9,'12','13'),(10,'6','16'),(11,'20','21');
 
 #
+# Structure for table "hzw_shape_character"
+#
+
+DROP TABLE IF EXISTS `hzw_shape_character`;
+CREATE TABLE `hzw_shape_character` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CID` int(11) NOT NULL,
+  `video` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "hzw_shape_character"
+#
+
+INSERT INTO `hzw_shape_character` VALUES (1,92,'mu.3gp'),(2,92,'mu.3gp');
+
+#
 # Structure for table "hzw_test_fill"
 #
 
@@ -103,12 +121,13 @@ CREATE TABLE `hzw_test_fill` (
   `sentence5` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `correct_order` varchar(5) CHARACTER SET utf8 NOT NULL DEFAULT '12345' COMMENT '正确选项',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #
 # Data for table "hzw_test_fill"
 #
 
+INSERT INTO `hzw_test_fill` VALUES (2,'元旦','眼泪','盯着','家庭','清晰','我看见（）从她脸上流了下来。','她与（）断绝了关系。','你的语言应该简单、（）。','（）是一年的第一天。','每次我们停下来，每个人都会（）我们。','24513'),(3,'哀叹','庙会','明天','圆满','回信','（）把她带到我家来。','如果你（）的话，他就写信。','他（）道，“现在和过去不一样了。”','这个持续了60年的爱情故事终于有了（）的结局。','北京最近有好多（）。','35142'),(4,'页眉','瞎忙','上旬','嘴唇','期望','我（）见到我的舅舅。','您拥有带（）和页脚的空白页。','今年的运动会在十月（）举行。','我们（）了整整一个上午。','姑娘用唇膏乱涂了一下（）。','51324'),(5,'仓库','目前','睡觉','生日','围巾','今年流行那种（）。','你必须安心于（）的工作。','（）快乐！','这些蔬菜贮藏在20摄氏度以下的（）里。','去（）吧，你看上去困乏极了。','52413');
 
 #
 # Structure for table "hzw_test_hear_choice"
@@ -127,12 +146,13 @@ CREATE TABLE `hzw_test_hear_choice` (
   PRIMARY KEY (`ID`),
   KEY `relation_character_id` (`relation_character_id`),
   CONSTRAINT `hzw_test_hear_choice_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #
 # Data for table "hzw_test_hear_choice"
 #
 
+INSERT INTO `hzw_test_hear_choice` VALUES (1,'d','zhuang1.mp3',1,'7.jpg','92.jpg','13.jpg','1.jpg'),(2,'a','ku4.mp3',3,'3.jpg','15.jpg','32.jpg','23.jpg'),(3,'c','dan4.mp3',25,'2.jpg','10.jpg','25.jpg','40.jpg'),(4,'a','zhuang1.mp3',1,'1.jpg','24.jpg','27.jpg','29.jpg'),(5,'d','tun1.mp3',31,'21.jpg','43.jpg','46.jpg','31.jpg');
 
 #
 # Structure for table "hzw_test_hear_tof"
@@ -148,12 +168,13 @@ CREATE TABLE `hzw_test_hear_tof` (
   PRIMARY KEY (`ID`),
   KEY `relation_character_id` (`relation_character_id`),
   CONSTRAINT `hzw_test_hear_tof_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 #
 # Data for table "hzw_test_hear_tof"
 #
 
+INSERT INTO `hzw_test_hear_tof` VALUES (1,b'0',1,'zhuang1.mp3','7.jpg'),(2,b'1',12,'mei2.mp3','12.jpg'),(3,b'0',10,'lei4.mp3','25.jpg'),(4,b'0',43,'guo2.mp3','27.jpg'),(5,b'0',2,'ting2.mp3','21.jpg');
 
 #
 # Structure for table "hzw_test_tof"
@@ -165,13 +186,14 @@ CREATE TABLE `hzw_test_tof` (
   `tof` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否正确，正确为1',
   `relation_character_id` int(11) NOT NULL DEFAULT '0' COMMENT '关联字id',
   `picture` varchar(255) NOT NULL DEFAULT '',
-  `character` char(4) NOT NULL DEFAULT '',
+  `character_shape` char(4) NOT NULL DEFAULT '',
   PRIMARY KEY (`ID`),
   KEY `relation_character_id` (`relation_character_id`),
   CONSTRAINT `hzw_test_tof_ibfk_1` FOREIGN KEY (`relation_character_id`) REFERENCES `hzw_character` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "hzw_test_tof"
 #
 
+INSERT INTO `hzw_test_tof` VALUES (1,b'1',1,'1.jpg','庄'),(2,b'0',5,'32.jpg','庙'),(3,b'0',13,'95.jpg','眼'),(4,b'0',13,'95.jpg','眼'),(5,b'1',30,'30.jpg','叹'),(6,b'0',11,'3.jpg','盯');
