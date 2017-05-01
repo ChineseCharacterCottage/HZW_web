@@ -10,6 +10,9 @@
     <label for="character_shape">character(字形):</label>
     <input type="text" id="character_shape" name="character_shape" value="<?php if(!$result) echo set_value('character_shape'); ?>"><br/>
 
+    <label for="image">image(图片文件):</label>
+    <input type="file" id="image" name="image"><br/>
+
     <label for="pinyin">pinyin(拼音):</label>
     <input type="text" id="pinyin" name="pinyin" value="<?php if(!$result) echo set_value('pinyin'); ?>"><br/>
 
@@ -18,6 +21,9 @@
 
     <label for="words">words(例词):</label>
     <input type="text" id="words" name="words" value="<?php if(!$result) echo set_value('words'); ?>"><br/>
+
+    <label for="word_pronunciation">word pronunciation(例句读音文件):</label>
+    <input type="file" id="word_pronunciation" name="word_pronunciation"><br/>
 
     <label for="sentence">sentence(例句):</label>
     <input type="text" id="sentence" name="sentence" value="<?php if(!$result) echo set_value('sentence'); ?>"><br/>
