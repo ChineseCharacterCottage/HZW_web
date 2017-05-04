@@ -11,25 +11,22 @@
     <input type="text" id="character_shape" name="character_shape" value="<?php if(!$result) echo set_value('character_shape'); ?>"><br/>
 
     <label for="image">image(图片文件):</label>
-    <input type="file" id="image" name="image"><br/>
+    <input type="file" id="image" name="image" accept=".jpg"><br/>
 
     <label for="pinyin">pinyin(拼音):</label>
     <input type="text" id="pinyin" name="pinyin" value="<?php if(!$result) echo set_value('pinyin'); ?>"><br/>
 
     <label for="pronunciation">pronunciation(读音文件):</label>
-    <input type="file" id="pronunciation" name="pronunciation"><br/>
+    <input type="file" id="pronunciation" name="pronunciation" accept=".mp3"><br/>
 
     <label for="words">words(例词):</label>
     <input type="text" id="words" name="words" value="<?php if(!$result) echo set_value('words'); ?>"><br/>
-
-    <label for="word_pronunciation">word pronunciation(例句读音文件):</label>
-    <input type="file" id="word_pronunciation" name="word_pronunciation"><br/>
 
     <label for="sentence">sentence(例句):</label>
     <input type="text" id="sentence" name="sentence" value="<?php if(!$result) echo set_value('sentence'); ?>"><br/>
 
     <label for="sentence_pronunciation">sentence pronunciation(例句读音文件):</label>
-    <input type="file" id="sentence_pronunciation" name="sentence_pronunciation"><br/>
+    <input type="file" id="sentence_pronunciation" name="sentence_pronunciation" accept=".mp3"><br/>
 
     <label for="explanation">explanation(解释):</label>
     <input type="text" id="explanation" name="explanation" value="<?php if(!$result) echo set_value('explanation'); ?>"><br/>

@@ -47,7 +47,7 @@ class Character_input extends CI_Controller
                 $result_msg='字库中还没有这个发音的读音文件，请上传';
             }
         }
-        $this->load->view('character_input',array('result'=>$result,'result_msg'=>$result_msg));
+        $this->load->view('character_input/character_input',array('result'=>$result,'result_msg'=>$result_msg));
     }
 
     /*未完成，也许以后会用到
