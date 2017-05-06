@@ -16,5 +16,6 @@
     <p><a href="<?php echo site_url('test_input/hear_tof');?>">听力判断输入</a></p>
     <p><a href="<?php echo site_url('test_input/fill');?>">填空输入</a></p>
     <p><a href="<?php echo site_url('test_input/tof');?>">判断输入</a></p>
+    <p><?php echo FCPATH; ?></p>
 </body>
 </html>
