@@ -9,7 +9,7 @@
 class Pictogram_input extends CI_Controller {
 
     //视频文件地址
-    var $file_path=FCPATH.'video/';
+    var $file_path;
     //临时存储汉字
     var $character;
 
@@ -19,6 +19,7 @@ class Pictogram_input extends CI_Controller {
         $this->load->model('Character_model');
         $this->load->model('Pictogram_model');
         $this->load->library('form_validation');
+        $this->file_path=FCPATH.'video/';
     }
     
     public function index(){

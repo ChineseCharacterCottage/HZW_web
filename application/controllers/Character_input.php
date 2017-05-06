@@ -11,7 +11,7 @@ class Character_input extends CI_Controller
     //用于临时存储部首信息
     var $radical = null;
     //文件存放地址
-    var $file_path=FCPATH.'../files/';
+    var $file_path;
 
     public function __construct(){
         parent::__construct();
@@ -19,6 +19,7 @@ class Character_input extends CI_Controller
         $this->load->model('Radical_model');
         $this->load->helper('url');
         $this->load->library('form_validation');
+        $this->file_path= FCPATH . "../files/";
     }
 
     public function index(){

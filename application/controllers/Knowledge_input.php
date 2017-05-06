@@ -9,7 +9,7 @@
 class Knowledge_input extends CI_Controller {
 
     //视频文件地址
-    var $file_path=FCPATH.'video/';
+    var $file_path;
 
     public function __construct(){
         parent::__construct();
@@ -17,6 +17,7 @@ class Knowledge_input extends CI_Controller {
         $this->load->model('Character_model');
         $this->load->model('Knowledge_model');
         $this->load->library('form_validation');
+        $this->file_path=FCPATH.'video/';
     }
     
     public function index(){
