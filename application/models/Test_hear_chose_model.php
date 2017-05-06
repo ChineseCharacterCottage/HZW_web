@@ -36,7 +36,8 @@ class Test_hear_chose_model extends CI_Model
                 $data['picture_d']=$picture_char_d['ID'].'.jpg';
                 $data['pronunciation']=$relation_char['pinyin'].'.mp3';
                 $data['relation_character_id']=$relation_char['ID'];
-                return $this->db->insert('hzw_test_hear_choice',$data);
+                $this->db->insert('hzw_test_hear_choice',$data);
+                return true;
             }
         }
         return false;

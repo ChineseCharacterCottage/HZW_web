@@ -22,7 +22,8 @@ class Character_model extends CI_Model
             $data['sentence']=$character_info['sentence'];
             $data['explanation']=$character_info['explanation'];
             $data['radical_id']=$character_info['radical_id'];
-            return $this->db->insert('hzw_character',$data);
+            $this->db->insert('hzw_character',$data);
+            return true;
         }
         else
             return false;

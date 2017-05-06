@@ -26,7 +26,7 @@ class Radical_input extends CI_Controller
             $data=$this->input->post();
             $result=$this->Radical_model->insert_new_radical($data);
         }
-        $this->load->view('radical_input',array('result'=>$result));
+        $this->load->view('character_input/radical_input',array('result'=>$result));
     }
 
     public function radical_check($radical_shape){

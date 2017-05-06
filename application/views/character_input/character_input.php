@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>汉字输入</title>
+    <link href=""
 </head>
 <body>
     <?php //echo $error ?>
@@ -41,7 +42,7 @@
     <input type="text" id="radical" name="radical" value="<?php if(!$result) echo set_value('radical'); ?>"><br/>
 
     <input type="submit" value="添加汉字"><br/>
-    <p><a href="<?php echo site_url('radical_input/index');?>">去录入部首</a></p>
+    <p><a href="<?php echo site_url('input_chose');?>">返回主页</a></p>
     </form>
     <p id="result_message"><?php  echo $result_msg;?></p>
     <?php echo validation_errors(); ?>

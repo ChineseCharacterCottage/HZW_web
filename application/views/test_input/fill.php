@@ -42,6 +42,6 @@
     <input type="submit" value="确定">
     <p id="result_message"><?php  echo $result_msg;?></p>
     </form>
-    <p><a href="<?php echo site_url('test_input/index');?>">返回主页</a> </p>
+    <p><a href="<?php echo site_url('input_chose');?>">返回主页</a></p>
 </body>
 </html>

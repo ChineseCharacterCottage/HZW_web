@@ -18,7 +18,7 @@
 
     <input type="submit">
     <p id="result_message"><?php if($result) echo '录入成功';?></p>
-    <p><a href="<?php echo site_url('character_input/index');?>">去录入汉字</a></p>
+    <p><a href="<?php echo site_url('input_chose');?>">返回主页</a></p>
     </form>
 </body>
 </html>
