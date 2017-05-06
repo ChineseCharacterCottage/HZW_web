@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>部首输入</title>
+    <link rel="stylesheet" href="<?php echo base_url('css/input_form.css');?>">
 </head>
 <body>
     <?php //echo $error ?>
@@ -16,9 +17,11 @@
     <label for="characters">character(例字):</label>
     <input type="text" id="characters" name="characters" value="<?php if(!$result) echo set_value('characters'); ?>"><br/>
 
-    <input type="submit">
-    <p id="result_message"><?php if($result) echo '录入成功';?></p>
+    <div class="table_row">
+    <input id="submit" type="submit">
     <p><a href="<?php echo site_url('input_chose');?>">返回主页</a></p>
+    </div>
     </form>
+    <p id="result_message"><?php if($result) echo '录入成功';?></p>
 </body>
 </html>

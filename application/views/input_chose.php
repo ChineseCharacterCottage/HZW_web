@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>内容输入选择</title>
+    <link rel="stylesheet" href="<?php echo base_url('css/chose_page.css');?>">
 </head>
 <body>
     <h1>Character</h1>

@@ -1,0 +1,16 @@
+body{
+    padding-top: 50px;
+    background-color: gray;
+    text-align: center;
+}
+
+a{
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 25px;
+    border: dotted #2e8ece;
+}
+
+a:hover{
+    border: dashed #1f1d1d;
+}
