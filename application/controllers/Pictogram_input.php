@@ -28,8 +28,8 @@ class Pictogram_input extends CI_Controller {
         $result_msg='';
         if($this->form_validation->run()){
             if($_FILES['video']['error']==0&&$_FILES['video']['type']=='video/3gpp'){
-                move_uploaded_file($_FILES['video']['tmp_name'],$this->file_path.'pictogram_'.$this->character['id'].'.mp3');
-                $this->Pictogram_model->insert_new_pictogram(array('CID'=>$this->character['id'],'video'=>'pictogram_'.$this->character['id'].'.mp3'));
+                move_uploaded_file($_FILES['video']['tmp_name'],$this->file_path.'pictogram_'.$this->character['ID'].'.3gp');
+                $this->Pictogram_model->insert_new_pictogram(array('CID'=>$this->character['ID'],'video'=>'pictogram_'.$this->character['ID'].'.3gp'));
                 $result=true;
                 $result_msg="上传成功";
             }else{
