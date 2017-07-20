@@ -18,7 +18,20 @@ class Radical_model extends CI_Model
             $data['radical_shape']=$radical_info['radical_shape'];
             $data['radical_name']=$radical_info['radical_name'];
             $data['characters']=$radical_info['characters'];
-            return $this->db->insert('hzw_radical',$data);
+            $this->db->insert('hzw_radical',$data);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function update_radical($id,$radical_info){
+        if(isset($radical_info['radical_shape'])&&isset($radical_info['radical_name'])&&isset($radical_info['characters'])){
+            $data['radical_shape']=$radical_info['radical_shape'];
+            $data['radical_name']=$radical_info['radical_name'];
+            $data['characters']=$radical_info['characters'];
+            $this->db->where('ID',$id)->update('hzw_radical',$data);
+            return true;
         }
         else
             return false;
@@ -29,5 +42,17 @@ class Radical_model extends CI_Model
             return null;
         else
             return $this->db->get_where('hzw_radical',array('radical_shape'=>$radical_shape))->row_array();
+    }
+
+    public function get_radical_by_id($id){
+        return $this->db->get_where('hzw_radical',array('ID'=>$id))->row_array();
+    }
+
+    public function get_radical_list_by_id($id,$number){
+        return $this->db->limit($number)->where('ID>=',$id)->get('hzw_radical')->result_array();
+    }
+
+    public function delete($id){
+        return $this->db->where('ID',$id)->delete('hzw_radical');
     }
 }
