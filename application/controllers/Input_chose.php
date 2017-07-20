@@ -14,7 +14,9 @@ class Input_chose extends CI_Controller {
     }
 
     public function index(){
+        $this->load->view('template/header',['title'=>'模式选择']);
         $this->load->view('input_chose');
+        $this->load->view('template/footer');
     }
 
 }

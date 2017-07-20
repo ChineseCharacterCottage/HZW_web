@@ -1,33 +1,39 @@
-<html>
-<head>
-    <title>部首输入</title>
-    <link rel="stylesheet" href="<?php echo base_url('css/input_form.css');?>">
-</head>
-<body>
+<div id="form_container">
     <?php //echo $error ?>
-    <?php echo validation_errors(); ?>
-    <?php echo form_open_multipart('radical_input', array('id' => 'radical_input_form','class'=>'input_form')); ?>
+    <?php echo form_open_multipart($controller, array('id' => 'radical_input_form','class'=>'form-horizontal')); ?>
 
-    <div class="table_row">
-    <label for="radical_shape">radical_shape(部首字形):</label>
-    <input type="text" id="radical_shape" name="radical_shape" value="<?php if(!$result) echo set_value('radical_shape'); ?>">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="radical_shape">radical_shape(部首字形):</label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" id="radical_shape" name="radical_shape" value="<?php
+            if(!empty($shape))
+                echo $shape;
+            else if(!$result)
+                echo set_value('radical_shape'); ?>">
+        </div>
     </div>
 
-    <div class="table_row">
-    <label for="radical_name">radical_name(部首名):</label>
-    <input type="text" id="radical_name" name="radical_name" value="<?php if(!$result) echo set_value('radical_name'); ?>">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="radical_name">radical_name(部首名):</label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" id="radical_name" name="radical_name" value="<?php if(!$result) echo set_value('radical_name'); ?>">
+        </div>
     </div>
 
-    <div class="table_row">
-    <label for="characters">character(例字):</label>
-    <input type="text" id="characters" name="characters" value="<?php if(!$result) echo set_value('characters'); ?>">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="characters">character(例字):</label>
+        <div class="col-sm-9">
+            <input class="form-control" type="text" id="characters" name="characters" value="<?php if(!$result) echo set_value('characters'); ?>">
+        </div>
     </div>
 
-    <div class="table_row">
-    <p><a href="<?php echo site_url('input_chose');?>">返回主页</a></p>
-    <input id="submit" type="submit" value="添加部首">
+    <div class="form-group">
+        <p class="col-sm-3 control-label"><a class="btn btn-danger" href="<?php echo site_url('input_chose');?>">返回主页</a></p>
+        <div class="col-sm-9">
+            <input class="form-control btn btn-primary" id="submit" type="submit" value="添加部首">
+        </div>
     </div>
     </form>
     <p id="result_message"><?php if($result) echo '录入成功';?></p>
-</body>
-</html>
+    <?php echo validation_errors(); ?>
+</div>

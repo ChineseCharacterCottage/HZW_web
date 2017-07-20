@@ -1,16 +1,11 @@
-body{
+#container{
     padding-top: 50px;
-    background-color: gray;
+    margin: 0 200px;
     text-align: center;
 }
 
-a{
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 25px;
-    border: dotted #2e8ece;
-}
-
-a:hover{
-    border: dashed #1f1d1d;
+#nav{
+    margin-bottom: 50px;
+    font-size: medium;
+    text-align: center;
 }

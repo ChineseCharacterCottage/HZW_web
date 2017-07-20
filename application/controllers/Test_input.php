@@ -45,12 +45,16 @@ class Test_input extends CI_Controller
 
         $this->form_validation->set_rules('pronunciation_char', 'pronunciation_char', 'trim|required', array('required' => '请输入发音字'));
         $this->form_validation->set_rules('picture_char', 'picture_char', 'trim|required', array('required' => '请输入图片对应字'));
-        $this->form_validation->set_rules('tof', 'tof', 'trim|required', array('required' => '请选择是否正确'));
 
         $result=false;
         $result_msg='';
         if($this->form_validation->run()){
-            $result=$this->Test_hear_tof_model->insert_new_test($this->input->post());
+            $data=$this->input->post();
+            if($data['pronunciation_char']==$data['picture_char'])
+                $data['tof']=1;
+            else
+                $data['tof']=0;
+            $result=$this->Test_hear_tof_model->insert_new_test($data);
             if(!$result)
                 $result_msg='请确认以上汉字已经被输入字库';
             else
@@ -65,12 +69,16 @@ class Test_input extends CI_Controller
 
         $this->form_validation->set_rules('character_shape', 'character_shape', 'trim|required', array('required' => '请输入发音字'));
         $this->form_validation->set_rules('picture_char', 'picture_char', 'trim|required', array('required' => '请输入图片对应字'));
-        $this->form_validation->set_rules('tof', 'tof', 'trim|required', array('required' => '请选择是否正确'));
 
         $result=false;
         $result_msg='';
         if($this->form_validation->run()){
-            $result=$this->Test_tof_model->insert_new_test($this->input->post());
+            $data=$this->input->post();
+            if($data['character_shape']==$data['picture_char'])
+                $data['tof']=1;
+            else
+                $data['tof']=0;
+            $result=$this->Test_tof_model->insert_new_test($data);
             if(!$result)
                 $result_msg='请确认以上汉字已经被输入字库';
             else
