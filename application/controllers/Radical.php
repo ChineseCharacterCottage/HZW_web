@@ -56,8 +56,9 @@ class Radical extends CI_Controller
         $this->load->view('template/search_form',['controller'=>'Component/search']);
 
         if($this->form_validation->run()) {
-            $radical = $this->Radical_model->get_radical_by_shape($this->input->post('shape'));
-            if (!empty($radical)) {
+            $target_radicals = $this->Radical_model->get_radical_by_shape($this->input->post('shape'));
+            $radicals=array();
+            foreach ($target_radicals as $radical) {
                 $radical_id = $radical['ID'];
                 $number = 1;
                 switch ($this->input->post('model')) {
@@ -79,11 +80,9 @@ class Radical extends CI_Controller
                         $number = 50;
                         break;
                 }
-                $radicals = $this->Radical_model->get_radical_list_by_id($radical_id, $number);
-                $this->load->view('search/radical_search',['radicals'=>$radicals]);
-            }else{
-                $this->load->view('search/radical_search');
+                $radicals = array_merge($radicals,$this->Radical_model->get_radical_list_by_id($radical_id, $number));
             }
+            $this->load->view('search/radical_search',['radicals'=>$radicals]);
         }
 
         $this->load->view('template/footer');

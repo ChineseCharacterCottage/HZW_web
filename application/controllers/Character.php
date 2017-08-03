@@ -78,13 +78,14 @@ class Character extends CI_Controller
         $this->load->view('template/search_form',['controller'=>'Character/search']);
 
         if($this->form_validation->run()) {
-            $character = $this->Character_model->get_character_by_shape($this->input->post('shape'));
-            if (!empty($character)) {
+            $target_characters = $this->Character_model->get_character_by_shape($this->input->post('shape'));
+            $characters=array();
+            foreach ($target_characters as $character) {
                 $character_id = $character['ID'];
                 $number = 1;
                 switch ($this->input->post('model')) {
                     case 1:
-                        $number = 1;
+                        $number=1;
                         break;
                     case 2:
                         $character_id -= 10;
@@ -101,11 +102,9 @@ class Character extends CI_Controller
                         $number = 50;
                         break;
                 }
-                $characters = $this->Character_model->get_character_list_by_id($character_id, $number);
-                $this->load->view('search/character_search',['characters'=>$characters]);
-            }else{
-                $this->load->view('search/character_search');
+                $characters =array_merge($characters,$this->Character_model->get_character_list_by_id($character_id, $number)) ;
             }
+            $this->load->view('search/character_search', ['characters' => $characters]);
         }
 
         $this->load->view('template/footer');

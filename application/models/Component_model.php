@@ -43,7 +43,7 @@ class Component_model extends CI_Model {
     }
 
     public function get_component_by_shape($component_shape){
-        return $this->db->get_where('hzw_component',array('shape'=>$component_shape))->row_array();
+        return $this->db->get_where('hzw_component',array('shape'=>$component_shape))->result_array();
     }
 
     public function get_component_list_by_id($id,$number){

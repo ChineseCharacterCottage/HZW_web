@@ -49,7 +49,7 @@ class Character_model extends CI_Model
         if($char_shape==-1)
             return null;
         else
-            return $this->db->get_where('hzw_character',array('character_shape'=>$char_shape))->row_array();
+            return $this->db->get_where('hzw_character',array('character_shape'=>$char_shape))->result_array();
     }
 
     public function get_character_by_id($id=-1){

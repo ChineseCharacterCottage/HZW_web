@@ -41,7 +41,7 @@ class Radical_model extends CI_Model
         if($radical_shape==-1)
             return null;
         else
-            return $this->db->get_where('hzw_radical',array('radical_shape'=>$radical_shape))->row_array();
+            return $this->db->get_where('hzw_radical',array('radical_shape'=>$radical_shape))->result_array();
     }
 
     public function get_radical_by_id($id){

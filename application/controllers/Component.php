@@ -54,8 +54,9 @@ class Component extends CI_Controller {
         $this->load->view('template/search_form',['controller'=>'Component/search']);
 
         if($this->form_validation->run()) {
-            $component = $this->Component_model->get_component_by_shape($this->input->post('shape'));
-            if (!empty($component)) {
+            $target_components = $this->Component_model->get_component_by_shape($this->input->post('shape'));
+            $components=array();
+            foreach ($target_components as $component) {
                 $component_id = $component['ID'];
                 $number = 1;
                 switch ($this->input->post('model')) {
@@ -77,11 +78,9 @@ class Component extends CI_Controller {
                         $number = 50;
                         break;
                 }
-                $components = $this->Component_model->get_component_list_by_id($component_id, $number);
-                $this->load->view('search/component_search',['components'=>$components]);
-            }else{
-                $this->load->view('search/component_search');
+                $components = array_merge($components,$this->Component_model->get_component_list_by_id($component_id, $number));
             }
+            $this->load->view('search/component_search',['components'=>$components]);
         }
 
         $this->load->view('template/footer');
