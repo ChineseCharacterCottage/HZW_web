@@ -107,6 +107,32 @@ class Test_input extends CI_Controller
         }
 
         $this->load->view('test_input/fill',array('result'=>$result,'result_msg'=>$result_msg));
+    }
+
+    public function component_chose(){
+        $this->load->model('Test_component_model');
+        $this->load->view('template/header',['title'=>'部件测试输入']);
+
+        $this->form_validation->set_rules('component_shape', 'component_shape', 'trim|required', array('required' => '请输入偏旁字形'));
+        $this->form_validation->set_rules('voice_or_shape', 'voice_or_shape', 'trim|required', array('required' => '请选择偏旁类型'));
+        $this->form_validation->set_rules('choice_a', 'choice_a', 'trim|required', array('required' => '请输入选项A'));
+        $this->form_validation->set_rules('choice_b', 'choice_b', 'trim|required', array('required' => '请输入选项B'));
+        $this->form_validation->set_rules('choice_c', 'choice_c', 'trim|required', array('required' => '请输入选项C'));
+        $this->form_validation->set_rules('choice_d', 'choice_d', 'trim|required', array('required' => '请输入选项D'));
+        $this->form_validation->set_rules('correct_choice', 'correct_choice', 'trim|required', array('required' => '请选择正确选项'));
+
+        $result=false;
+        $result_msg='';
+        if($this->form_validation->run()){
+            $result=$this->Test_component_model->insert_new_test($this->input->post());
+            if(!$result)
+                $result_msg='上传出现错误，请确定该部件已经被输入字库';
+            else
+                $result_msg='上传成功';
+        }
+        $this->load->view('test_input/component_chose',array('result'=>$result,'result_msg'=>$result_msg));
+
+        $this->load->view('template/footer');
 
     }
 }

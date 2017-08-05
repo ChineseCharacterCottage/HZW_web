@@ -14,6 +14,7 @@
         case '汉字搜索':
         case '部件搜索':
         case '部首搜索':
+        case '偏旁学习顺序搜索':
             echo '<link rel="stylesheet" href="'. base_url("css/search_page.css").'">';break;
         default:
             echo '<link rel="stylesheet" href="'. base_url("css/input_form.css").'">';break;

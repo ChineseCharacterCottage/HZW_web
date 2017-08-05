@@ -40,7 +40,10 @@ class Component extends CI_Controller {
             $result= $this->Component_model->update_component($id,$this->input->post());
         }
 
-        $shape=$this->Component_model->get_component_by_id($id)['shape'];
+        $shape=null;
+        $component=$this->Component_model->get_component_by_id($id);
+        if(!empty($component['shape']))
+            $shape=$component['shape'];
         $this->load->view('template/header',['title'=>'重新输入部件']);
         $this->load->view('character_input/component_input',['shape'=>$shape,'controller'=>'Component/update/'.$id,'result'=>$result]);
         $this->load->view('template/footer');

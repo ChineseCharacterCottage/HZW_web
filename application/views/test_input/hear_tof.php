@@ -17,7 +17,7 @@
         <label class="col-sm-3 control-label" for="pronunciation_char">pronunciation character(发音字):</label>
         <div class="col-sm-9">
             <input  class="form-control" type="text" id="pronunciation_char" name="pronunciation_char"
-                    value="<?php if(!$result) echo set_value('pronunciation_char'); ?>">
+                    value="<?php if(!$result) echo set_value('pronunciation_char'); ?>" required>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
         <label class="col-sm-3 control-label" for="picture_char">picture character(图片对应字):</label>
         <div class="col-sm-9">
             <input  class="form-control" type="text" id="picture_char" name="picture_char"
-                    value="<?php if(!$result) echo set_value('picture_char'); ?>">
+                    value="<?php if(!$result) echo set_value('picture_char'); ?>" required>
         </div>
     </div>
 

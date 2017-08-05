@@ -15,7 +15,7 @@
                 <td><?= $radical['radical_shape']?></td>
                 <td><?= $radical['characters']?></td>
                 <td><?= $radical['radical_name']?></td>
-                <td><a href="<?= site_url('Radical/update/'. $radical['ID']) ?>">重新输入</a>/
+                <td><a target="_blank" href="<?= site_url('Radical/update/'. $radical['ID']) ?>">重新输入</a>/
                     <a href="#" onclick="delete_(<?=$radical['ID']?>)">删除</a></td>
             </tr>
         <?php endforeach; ?>

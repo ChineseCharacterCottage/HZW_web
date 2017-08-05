@@ -21,7 +21,7 @@
                 <td><?= $character['sentence']?></td>
                 <td><?= $character['explanation']?></td>
                 <td><?= $character['radical_shape']?></td>
-                <td><a href="<?= site_url('Character/input_and_update/'. $character['ID']) ?>">重新输入</a>/
+                <td><a target="_blank" href="<?= site_url('Character/input_and_update/'. $character['ID']) ?>">重新输入</a>/
                     <a href="#" onclick="delete_1(<?=$character['ID']?>)">删除</a></td>
             </tr>
         <?php endforeach; ?>

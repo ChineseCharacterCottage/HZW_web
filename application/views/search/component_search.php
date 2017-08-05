@@ -15,9 +15,9 @@
             <tr>
                 <td><?= $component['shape']?></td>
                 <td><?= $component['characters']?></td>
-                <td><?= $component['voice_or_shape']=='v'?'形旁':'声旁'?></td>
+                <td><?= $component['voice_or_shape']=='v'?'声旁':'形旁'?></td>
                 <td><?= $component['explanation']?></td>
-                <td><a href="<?= site_url('Component/update/'. $component['ID']) ?>">重新输入</a>/
+                <td><a target="_blank" href="<?= site_url('Component/update/'. $component['ID']) ?>">重新输入</a>/
                     <a href="#" onclick="delete_(<?=$component['ID']?>)">删除</a></td>
             </tr>
         <?php endforeach; ?>
