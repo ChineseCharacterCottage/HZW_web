@@ -20,7 +20,7 @@
         <p><a class="btn btn-primary btn-lg" role="button" href="<?php echo site_url('test_input/hear_tof'); ?>">听力判断输入</a></p>
         <p><a class="btn btn-primary btn-lg" role="button" href="<?php echo site_url('test_input/fill'); ?>">填空输入</a></p>
         <p><a class="btn btn-primary btn-lg" role="button" href="<?php echo site_url('test_input/tof'); ?>">判断输入</a></p>
-        <p><a class="btn btn-primary btn-lg" role="button" href="<?php echo site_url('test_input/component_chose'); ?>">部件测试输入</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button" href="<?php echo site_url('test_input/component_chose'); ?>">偏旁测试输入</a></p>
     </div>
 
     <div id="pager3">

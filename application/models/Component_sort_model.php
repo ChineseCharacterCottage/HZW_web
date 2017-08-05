@@ -14,8 +14,11 @@ class Component_sort_model extends CI_Model {
                 ->get('hzw_component')
                 ->row_array();
             if(!empty($component)){
-                $this->db->insert('hzw_comp_sort',['comp_id'=>$component['ID']]);
-                return true;
+                $component_test=$this->db->get_where('hzw_test_component',['comp_id'=>$component['ID']])->row_array();
+                if(!empty($component_test)){
+                    $this->db->insert('hzw_comp_sort',['comp_id'=>$component['ID']]);
+                    return true;
+                }
             }
         }
         return false;
@@ -28,8 +31,11 @@ class Component_sort_model extends CI_Model {
                 ->get('hzw_component')
                 ->row_array();
             if(!empty($component)){
-                $this->db->where('comp_id',$component['ID'])->set('c_order',$order)->update('hzw_comp_sort');
-                return true;
+                $component_test=$this->db->get_where('hzw_test_component',['comp_id'=>$component['ID']])->row_array();
+                if(!empty($component_test)) {
+                    $this->db->where('c_order', $order)->set('comp_id', $component['ID'])->update('hzw_comp_sort');
+                    return true;
+                }
             }
         }
         return false;

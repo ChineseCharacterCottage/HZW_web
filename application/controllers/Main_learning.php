@@ -26,7 +26,7 @@ class Main_learning extends CI_Controller{
             if($result)
                 $result_msg="上传成功";
             else
-                $result_msg='上传失败，请确定该部件已经被录入';
+                $result_msg='上传失败，请确定该部件及其测试题已经被录入';
         }
         $this->load->view('template/header',['title'=>'偏旁学习顺序输入']);
         $this->load->view('main_learning/order_input',['controller'=>'Main_learning/insert','result'=>$result,'result_msg'=>$result_msg]);
@@ -79,7 +79,7 @@ class Main_learning extends CI_Controller{
             if($result)
                 $result_msg="上传成功";
             else
-                $result_msg='上传失败，请确定该部件已经被录入';
+                $result_msg='上传失败，请确定该部件及其测试题已经被录入';
         }
 
         $component_shape=null;
