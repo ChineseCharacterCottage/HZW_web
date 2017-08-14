@@ -1,6 +1,6 @@
 <div id="form_container">
     <?php //echo $error ?>
-    <?php echo form_open_multipart('character/index/'.$update_id, array('id' => 'char_input_form','class'=>'form-horizontal')); ?>
+    <?php echo form_open_multipart('character/input_and_update/'.$update_id, array('id' => 'char_input_form','class'=>'form-horizontal')); ?>
 
     <div class="form-group">
         <label for="character_shape" class="col-sm-3 control-label">character(字形):</label>

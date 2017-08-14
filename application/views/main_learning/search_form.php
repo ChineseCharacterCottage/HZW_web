@@ -1,5 +1,5 @@
 <div id="form_container">
-    <?= form_open_multipart('', array('id' => 'search_form','class'=>'form-horizontal')); ?>
+    <?= form_open_multipart($controller, array('id' => 'search_form','class'=>'form-horizontal')); ?>
 
     <div class="form-group">
         <label for="order" class="col-sm-2 control-label">order(序号):</label>
