@@ -131,13 +131,13 @@ class Character extends CI_Controller
             $this->form_validation->set_message('radical_check', '请输入部首');
             return false;
         }
-        $radical=$this->Radical_model->get_radical_by_shape($radical_shape);
-        if($radical==null){
+        $radicals=$this->Radical_model->get_radical_by_shape($radical_shape);
+        if(empty($radicals)){
             $this->form_validation->set_message('radical_check', '该部首还没有录入库中');
             return false;
         }
         else{
-            $this->radical=$radical;
+            $this->radical=$radicals[0];
             return true;
         }
     }

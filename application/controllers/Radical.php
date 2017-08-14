@@ -100,8 +100,8 @@ class Radical extends CI_Controller
             $this->form_validation->set_message('radical_check', '请输入部首字形');
             return false;
         }
-        $radical=$this->Radical_model->get_radical_by_shape($radical_shape);
-        if($radical!=null){
+        $radicals=$this->Radical_model->get_radical_by_shape($radical_shape);
+        if(empty($radicals)){
             $this->form_validation->set_message('radical_check', '该部首已经录入');
             return false;
         }else
