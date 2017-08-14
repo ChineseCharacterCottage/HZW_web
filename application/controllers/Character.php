@@ -33,10 +33,14 @@ class Character extends CI_Controller
         $result=false;
         $result_msg='';
         if($this->form_validation->run()){
-            if($this->file_check("image","image/jpeg")&&$this->file_check("sentence_pronunciation","audio/mp3")&&$this->words_check()){
+			echo $_FILES["image"]['type'].'/'.$_FILES["sentence_pronunciation"]['type'].'/';
+			echo $this->file_check("image","image/jpeg").'/'.$this->file_check("sentence_pronunciation","audio/mpeg").'/'.$this->words_check();
+            if($this->file_check("image","image/jpeg")
+                &&($this->file_check("sentence_pronunciation","audio/mp3")||$this->file_check("sentence_pronunciation","audio/mpeg"))
+                &&$this->words_check()){
                 $old_pinyin=$this->Character_model->get_character_by_pinyin($this->input->post('pinyin'));
                 if(empty($old_pinyin)){
-                    if($this->file_check("pronunciation","audio/mp3")){
+                    if($this->file_check("pronunciation","audio/mp3")||$this->file_check("pronunciation","audio/mpeg")){
                         move_uploaded_file($_FILES['pronunciation']['tmp_name'],$this->file_path.$this->input->post("pinyin").'.mp3');
                         $this->do_insert_or_update_and_upload($update_id);
                         $result=true;
@@ -149,7 +153,7 @@ class Character extends CI_Controller
     private function words_check(){
         $words_num=$this->input->post("words_num");
         for($i=0;$i<$words_num;$i++){
-            if(!$this->file_check('words_pronunciation'.$i,'audio/mp3')) {
+            if(!($this->file_check('words_pronunciation'.$i,'audio/mp3')||$this->file_check('words_pronunciation'.$i,'audio/mpeg'))) {
                 return false;
             }
         }
