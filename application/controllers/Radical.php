@@ -101,7 +101,7 @@ class Radical extends CI_Controller
             return false;
         }
         $radicals=$this->Radical_model->get_radical_by_shape($radical_shape);
-        if(empty($radicals)){
+        if(!empty($radicals)){
             $this->form_validation->set_message('radical_check', '该部首已经录入');
             return false;
         }else
