@@ -53,7 +53,7 @@ class Radical extends CI_Controller
         $this->form_validation->set_rules('model', 'model', 'trim|required', array('required' => '请选择模式'));
 
         $this->load->view('template/header',['title'=>'部首搜索']);
-        $this->load->view('template/search_form',['controller'=>'Component/search']);
+        $this->load->view('template/search_form',['controller'=>'Radical/search']);
 
         if($this->form_validation->run()) {
             $target_radicals = $this->Radical_model->get_radical_by_shape($this->input->post('shape'));
